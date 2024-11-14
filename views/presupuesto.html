@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="The tattoo masterpieces of BloodMoonBreak">
+    <meta name="robots" content="noindex">
+    <meta name="author" content="Darius-Mihai Berinde">
+    <meta name="keywords" content="Tattoo, artist, studio">
+    <meta name="revisit-after" content="1 week">
+    <meta name="category" content="Tattoo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon1.ico">
+    <!-- Link to the stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <title>BloodMoonBreak-Tattoo</title>
+</head>
+
+<body>
+    <header class="div_header">
+        <!-- Logo -->
+        <img src="../images/logo.png"  width="2087" height="1395" id="logo" alt="Logo image" title="BloodMoonBreak">
+        <!-- Title -->
+        <h1 id="main_title">BloodMoonBreak - Tattoo Masterpieces </h1>
+
+        <!-- Navigation container - buttons between pages -->
+        <nav>
+            <ul id="nav_ul">
+                <li>
+                    <a href="../index.html" class="nav_link">Home</a>
+                </li>
+                <li>
+                    <a href="./portfolio.html" class="nav_link">Gallery</a>
+                </li>
+                <li>
+                    <a href="#" class="nav_link active_link">Prices</a>
+                </li>
+                <li>
+                    <a href="./contacto.html" class="nav_link">Contacts</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="special_titles">What's the price?</h2>
+        <div class="index_text">As we all know, all pieces should be unique, and that also applies to the prices.<br>
+            Send me your ideas and I'll send a response with an estimated price, how many sessions it would require and available dates.<br>
+            Don't be shy, hit me up ^_^ !!!
+        </div>
+        <form id="formulario" name="formulario" action="#" method="get" target="_self">
+            <table id="table_form"> <!-- Client request form with required inputs. -->
+                <tr>
+                    <td>
+                        <div>Name:</div>
+                    </td>
+                    <td>
+                        <input type="text" name="client_name" id="client_name" placeholder="Your Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>E-mail:</div>
+                    </td>
+                    <td>
+                        <input type="email" name="e-mail" id="email" placeholder="E-mail" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Phone Number:</div>
+                    </td>
+                    <td>
+                        <input type="text" name="phone" id="phone" placeholder="Phone Number" required> <!-- I've put it in "type=text" just so I don't get the arrows that go up and down in the box.-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div>What do you want to get tattooed?<br>
+                            Make sure to include key words of your preferred style, where do you want to get it, and how big.  
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" id="tattoo_description" placeholder="Which design will be your one? What tattoo will you get done?" maxlength="300" required>
+                    </td>
+                </tr>
+                <!-- Required Checkboxes that the user has to confirm before submitting their information.-->
+                <tr> 
+                    <td colspan="2">
+                        <input type="checkbox" required>
+                        <label> I confirm that I am 18 or older.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" required>
+                        <label>I accept the <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms of service</a>.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" required>
+                        <label>I agree to <a href="https://en.wikipedia.org/wiki/Privacy_policy">Privacy Policy</a>.</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" name="submit" id="submit" value="Submit">  
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+
+    <footer id="div_footer">
+        <div id="copyright_disclaimer">&copy; BloodMoonBreak&reg; 2024. All rights reserved.</div>
+        <div id="footer_text">
+            Av. Daniel Ayala, 20, <br>
+            30600 Archena, <br> 
+            Murcia
+        </div>
+        <ul id="socials_footer">
+            <li><a href="https://www.instagram.com/bmb_tattoo/"><img src="../images/socials/instagram.png" width="512" height="512" alt="Instagram profile"></a></li>
+            <li><a href="https://www.facebook.com/"><img src="../images/socials/facebook.png" width="512" height="512" alt="Facebook page"></a></li>
+            <li><a href="https://wa.me/+34642111111"><img src="../images/socials/whatsapp.png" width="512" height="512" alt="Whastapp number"></a></li>
+        </ul>
+    </footer>
+    
+</body>
+</html>
