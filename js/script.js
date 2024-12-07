@@ -61,7 +61,7 @@ fetch('../json/articles_flowers.json')
             `
         })
 
-        seasonal_flowers.innerHTML = content;
+        seasonal_flowers_container.innerHTML = content;
     })
 
     .catch(error => {
