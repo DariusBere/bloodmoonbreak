@@ -1,0 +1,97 @@
+{
+    "seasons": [
+      {
+        "season": "Spring",
+        "articles": [
+          {
+            "title": "15 Best Flowers to Plant in Spring",
+            "url": "https://www.marthastewart.com/flowers-to-plant-in-spring-8572528",
+            "published_date": "2024-03-15",
+            "summary": "This article highlights 15 ideal flowers to plant in spring, ensuring vibrant blooms throughout the season. It provides planting tips and care instructions for each flower, helping gardeners create a colorful spring garden."
+          },
+          {
+            "title": "16 Colorful Perennial Flowers That Bloom from Spring to Fall",
+            "url": "https://www.bhg.com/gardening/flowers/perennials/flowering-perennials-from-spring-to-fall/",
+            "published_date": "2024-03-10",
+            "summary": "Discover 16 perennial flowers that offer continuous color from spring through fall. The article discusses each plant's characteristics, growing conditions, and maintenance requirements to assist gardeners in planning a long-lasting, colorful garden."
+          },
+          {
+            "title": "Plan Your Garden with our Perennial Flowers Season-by-Season List",
+            "url": "https://www.bhg.com/gardening/flowers/perennials/perennial-flowers-by-season/",
+            "published_date": "2024-03-05",
+            "summary": "This guide provides a season-by-season list of perennial flowers, focusing on those that thrive in spring. It offers insights into planting times, care tips, and how to create a garden that transitions smoothly through the seasons."
+          }
+        ]
+      },
+      {
+        "season": "Summer",
+        "articles": [
+          {
+            "title": "The 14 Best Full-Sun Perennials, According To Gardening Pros",
+            "url": "https://www.southernliving.com/full-sun-perennials-8676637",
+            "published_date": "2024-06-20",
+            "summary": "Explore 14 perennials that thrive in full sun, perfect for summer gardens. Gardening professionals provide insights into each plant's attributes, care requirements, and how they contribute to a vibrant summer landscape."
+          },
+          {
+            "title": "25 Perennial Flowers That Bloom From Spring To Fall",
+            "url": "https://gardeningbank.com/perennial-flowers-that-bloom-from-spring-to-fall/",
+            "published_date": "2024-06-15",
+            "summary": "This article lists 25 perennial flowers that provide continuous blooms from spring through fall. It includes detailed descriptions, growing conditions, and maintenance tips to help gardeners achieve a colorful and enduring garden."
+          },
+          {
+            "title": "20 Flowers That Bloom Year-Round Providing 365 days of Color",
+            "url": "https://www.gardeningchores.com/flowers-that-bloom-all-season/",
+            "published_date": "2024-06-10",
+            "summary": "Learn about 20 flowers that can bloom year-round, offering constant color in your garden. The article discusses each plant's characteristics, ideal growing conditions, and care tips to maintain continuous blooms."
+          }
+        ]
+      },
+      {
+        "season": "Autumn",
+        "articles": [
+          {
+            "title": "20 Perennials to Plant in the Fall for Beautiful Spring Flowers",
+            "url": "https://www.bobvila.com/articles/spring-flowers/",
+            "published_date": "2024-09-15",
+            "summary": "This article highlights 20 perennials that, when planted in the fall, ensure beautiful blooms in spring. It provides planting guidelines, care instructions, and insights into how fall planting benefits spring growth."
+          },
+          {
+            "title": "15 Cool Season Annual Flowers for Spring and Fall",
+            "url": "https://www.thespruce.com/cool-season-annual-flowers-1401934",
+            "published_date": "2024-09-10",
+            "summary": "Discover 15 annual flowers that thrive in cool seasons, perfect for planting in spring and fall. The article offers details on each flower's growing conditions, bloom periods, and maintenance needs."
+          },
+          {
+            "title": "Planning A Bulb Garden For All Seasons",
+            "url": "https://www.gardeningknowhow.com/ornamental/bulbs/bgen/bulb-garden-for-all-seasons.htm",
+            "published_date": "2024-09-05",
+            "summary": "Learn how to plan a bulb garden that offers blooms in every season. This guide discusses selecting the right bulbs, planting times, and care tips to maintain continuous color throughout the year."
+          }
+        ]
+      },
+      {
+        "season": "Winter",
+        "articles": [
+          {
+            "title": "7 Best Plants To Add Color To Your Garden In The Winter",
+            "url": "https://www.southernliving.com/plants-for-winter-color-8757521",
+            "published_date": "2024-12-07",
+            "summary": "This article highlights seven plants that can bring vibrancy to winter gardens, including beautyberry shrubs, camellias, winter pansies, abelias, winterberry, fothergilla, and mahonia. Each plant is described with its unique features and care requirements to help gardeners maintain color during the colder months."
+          },
+          {
+            "title": "8 Hardy Container Plants That Can Survive the Winter Outdoors",
+            "url": "https://www.realsimple.com/outdoor-container-plants-that-can-survive-the-winter-8753042",
+            "published_date": "2024-12-01",
+            "summary": "Explore eight hardy container plants that can withstand winter conditions outdoors. The article provides insights into each plant's resilience, care tips, and how to incorporate them into your winter garden."
+          },
+          {
+            "title": "25 Beautiful Flowering Plants That Bloom in Winter",
+            "url": "https://www.epicgardening.com/winter-blooming-flowers/",
+            "published_date": "2024-11-25",
+            "summary": "Discover 25 flowering plants that bloom during winter, bringing color to your garden in the colder months. The article discusses each plant's characteristics, ideal growing conditions, and maintenance requirements."
+          }
+        ]
+      }
+    ]
+  }
+  
