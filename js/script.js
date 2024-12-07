@@ -1,6 +1,6 @@
-const featured_coffee = document.getElementById("featured_coffee");
-const latest_books = document.getElementById("latest_books");
-const seasonal_flowers = document.getElementById("seasonal_flowers");
+const featured_coffee = document.getElementById("featured_coffee_container");
+const latest_books = document.getElementById("latest_books_container");
+const seasonal_flowers = document.getElementById("seasonal_flowers_container");
 
 /* Determines which season it is to post the corresponding 
 Season dates: 
