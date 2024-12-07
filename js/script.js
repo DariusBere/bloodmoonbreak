@@ -52,7 +52,7 @@ fetch('../json/articles_flowers.json')
         // Variable where we will introduce our content
         let content = '';
 
-        data.currentSeasonArticles.articles.forEach(article => {
+        currentSeasonArticles.articles.forEach(article => {
             content += `
             <h3>${article.title}</h3>
             <div>Url: <a>${article.url}</a></div>
