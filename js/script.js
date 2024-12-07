@@ -47,7 +47,7 @@ fetch('../json/articles_flowers.json')
         console.log(data);
 
         let currentSeasonArticles = data.seasons.find(season => season.season === currentSeason);
-        console.log(data.currentSeasonArticles);
+        console.log(currentSeasonArticles);
         
         // Variable where we will introduce our content
         let content = '';
