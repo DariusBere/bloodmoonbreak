@@ -1,9 +1,3 @@
-// The containers where to introduce the material. 
-
-const latest_books = document.getElementById("latest_books_container");
-
-
-
 
 
 
