@@ -1,5 +1,5 @@
 
-
+// ------------------ INDEX CODE ------------------ \\
 
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- COFFEE ARTICLES CODE -------------------------------------------------------------
@@ -74,6 +74,8 @@ function coffeeSpecialSelector(coffee_specials) {
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
+let jsonBooks;
+let flatJsonBooks;
 
 fetch('../json/latest_books.json')
     .then(response => {
@@ -85,18 +87,14 @@ fetch('../json/latest_books.json')
 
     .then(latest_books => {
         console.log(latest_books);
+        jsonBooks = latest_books;
+        flatJsonBooks = latest_books;
 
-        booksMonthSelector(latest_books);
+        // Selects the books of this month
+        booksMonthSelector(jsonBooks);
 
         // Time interval of the check: everyday
-        let pastMonth = new Date().getMonth();
-        setInterval(() => {
-            const currentMonth = new Date().getMonth();
-            if(currentMonth !== pastMonth) {
-                booksMonthSelector(latest_books);
-                pastMonth = currentMonth;
-            }
-        }, 24 * 60 * 60 * 1000); // Checks every day.
+        bookIntervalUpdate(jsonBooks);
 
     })
 
@@ -104,7 +102,7 @@ fetch('../json/latest_books.json')
         console.error('Error fetching or parsing JSON:', error);
     })
 
-function booksMonthSelector(latest_books) {
+function booksMonthSelector(jsonBooks) {
     const months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -112,7 +110,7 @@ function booksMonthSelector(latest_books) {
 
     const currentMonth = new Date().getMonth();
     const currentMonthName = months[currentMonth];
-    const currentMonthBooks = latest_books.booksOfTheMonth[currentMonthName];
+    const currentMonthBooks = jsonBooks.booksOfTheMonth[currentMonthName];
 
     let booksContent = '';
     currentMonthBooks.forEach(book => {
@@ -126,6 +124,18 @@ function booksMonthSelector(latest_books) {
     
     latest_books_container.innerHTML = booksContent;
 
+}
+
+function bookIntervalUpdate(jsonBooks){
+
+    let pastMonth = new Date().getMonth();
+    setInterval(() => {
+        const currentMonth = new Date().getMonth();
+        if(currentMonth !== pastMonth) {
+            booksMonthSelector(jsonBooks);
+            pastMonth = currentMonth;
+        }
+    }, 24 * 60 * 60 * 1000); // Checks every day.
 }
 
 
@@ -204,3 +214,8 @@ console.log(`The current season is ${currentSeason}.`);
 
 
 /* ------------------------------------------------------ FLOWER ARTICLES END ----------------------------------------------------------- */    
+
+
+// ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
+
+
