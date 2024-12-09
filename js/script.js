@@ -90,7 +90,7 @@ fetch('../json/latest_books.json')
 
         booksMonthSelector(latest_books);
 
-        // Time interval of the check: everydayS
+        // Time interval of the check: everyday
         let pastMonth = new Date().getMonth();
         setInterval(() => {
             const currentMonth = new Date().getMonth();
@@ -107,16 +107,22 @@ fetch('../json/latest_books.json')
     })
 
 function booksMonthSelector(latest_books) {
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
     const currentMonth = new Date().getMonth();
+    const currentMonthName = months[currentMonth];
+    const currentMonthBooks = latest_books.booksOfTheMonth[currentMonthName];
 
-    const currentMonthBook = latest_books[currentMonth];
-
-    currentMonthBook.forEach(thisMonthsBooks => {
+    let booksContent = '';
+    currentMonthBooks.forEach(book => {
         booksContent += `
-        <h3>Title: ${thisMonthsBooks.title}</h3>
-        <div>Author: ${thisMonthsBooks.author}</div>
-        <div>Published: ${thisMonthsBooks.published}</div>
-        <p>Synopsis: ${thisMonthsBooks.synopsis}</p>
+        <h3>Title: ${book.title}</h3>
+        <div>Author: ${book.author}</div>
+        <div>Published: ${book.published}</div>
+        <p>Synopsis: ${book.synopsis}</p>
         `
     })
     
