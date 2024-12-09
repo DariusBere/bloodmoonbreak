@@ -49,32 +49,22 @@ function coffeeSpecialSelector(coffee_specials) {
         coffee_specials[(startIndicator + 2) % coffee_specials.length]
     ]
 
-    // The variables that will contain the articles
-    let coffeeContent1 = ``;
-    let coffeeContent2 = ``;
-    let coffeeContent3 = ``;
+    // Introduce the content 
+    const coffeeContent1 = `
+    <h3>${selectedCoffeeArticles[0].name}</h3>
+    <p>${selectedCoffeeArticles[0].description}</p>
+    `;
 
-    // Introduce the content into it's variable
-    selectedCoffeeArticles[0](coffeeArticle0 => {
-        coffeeContent1 = `
-        <h3>${coffeeArticle0.name}</h3>
-        <p>${coffeeArticle0.description}</p>
-        `
-    })
+    const coffeeContent2 = `
+    <h3>${selectedCoffeeArticles[1].name}</h3>
+    <p>${selectedCoffeeArticles[1].description}</p>
+    `;
 
-    selectedCoffeeArticles[1](coffeeArticle1 => {
-        coffeeContent2 = `
-        <h3>${coffeeArticle1.name}</h3>
-        <p>${coffeeArticle1.description}</p>
-        `
-    })
-    
-    selectedCoffeeArticles[2](coffeeArticle2 => {
-        coffeeContent3 = `
-        <h3>${coffeeArticle2.name}</h3>
-        <p>${coffeeArticle2.description}</p>
-        `
-    })
+    const coffeeContent3 = `
+    <h3>${selectedCoffeeArticles[2].name}</h3>
+    <p>${selectedCoffeeArticles[2].description}</p>
+    `;
+
     
     // Show on site
     coffee_special1.innerHTML = coffeeContent1;
