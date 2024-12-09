@@ -1,8 +1,8 @@
 // The containers where to introduce the material. 
 
-const coffee_special1 = document.getElementById("coffee_special1");
-const coffee_special2 = document.getElementById("coffee_special2");
-const coffee_special3 = document.getElementById("coffee_special3");
+const coffee_special1 = document.getElementById("coffee_special1_container");
+const coffee_special2 = document.getElementById("coffee_special2_container");
+const coffee_special3 = document.getElementById("coffee_special3_container");
 const latest_books = document.getElementById("latest_books_container");
 const seasonal_flowers = document.getElementById("seasonal_flowers_container");
 
@@ -13,6 +13,8 @@ const seasonal_flowers = document.getElementById("seasonal_flowers_container");
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- COFFEE ARTICLES CODE -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
+let coffee_specials = new Array();
+
 fetch('../json/coffee_specials.json')
     .then(response => {
         if(!response.ok) {
