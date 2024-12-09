@@ -1,10 +1,7 @@
 // The containers where to introduce the material. 
 
-const coffee_special1 = document.getElementById("coffee_special1_container");
-const coffee_special2 = document.getElementById("coffee_special2_container");
-const coffee_special3 = document.getElementById("coffee_special3_container");
 const latest_books = document.getElementById("latest_books_container");
-const seasonal_flowers = document.getElementById("seasonal_flowers_container");
+
 
 
 
@@ -69,9 +66,9 @@ function coffeeSpecialSelector(coffee_specials) {
 
     
     // Show on site
-    coffee_special1.innerHTML = coffeeContent1;
-    coffee_special2.innerHTML = coffeeContent2;
-    coffee_special3.innerHTML = coffeeContent3;
+    coffee_special1_container.innerHTML = coffeeContent1;
+    coffee_special2_container.innerHTML = coffeeContent2;
+    coffee_special3_container.innerHTML = coffeeContent3;
 
 }
 
