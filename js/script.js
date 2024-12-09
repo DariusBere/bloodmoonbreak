@@ -1,4 +1,8 @@
-const featured_coffee = document.getElementById("featured_coffee_container");
+// The containers where to introduce the material. 
+
+const coffee_special1 = document.getElementById("coffee_special1");
+const coffee_special2 = document.getElementById("coffee_special2");
+const coffee_special3 = document.getElementById("coffee_special3");
 const latest_books = document.getElementById("latest_books_container");
 const seasonal_flowers = document.getElementById("seasonal_flowers_container");
 
@@ -9,6 +13,76 @@ const seasonal_flowers = document.getElementById("seasonal_flowers_container");
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- COFFEE ARTICLES CODE -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
+fetch('../json/coffee_specials.json')
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! - Coffee JSON - Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(coffee_specials => {
+        console.log(coffee_specials);
+        // Update the articles initially
+        coffeeSpecialSelector(coffee_specials);
+
+        //Time interval to check and update articles every minute
+        setInterval(() => {
+            coffeeSpecialSelector(coffee_specials);
+        }, 60 * 1000); // Checks every minute if the hour changed.
+    })
+
+    .catch(error => {
+        console.error('Error fetching or parsing JSON:', error);
+    })
+
+function coffeeSpecialSelector(coffee_specials) {
+    
+    // Get the current hour 
+    const currentHour = new Date().getHours();
+
+    // The startIndicator, will indicate the first article, for the second and third to follow after.
+    const startIndicator = (currentHour * 3) % coffee_specials.length;
+
+    const selectedCoffeeArticles = [
+        coffee_specials[startIndicator % coffee_specials.length],
+        coffee_specials[(startIndicator + 1) % coffee_specials.length],
+        coffee_specials[(startIndicator + 2) % coffee_specials.length]
+    ]
+
+    // The variables that will contain the articles
+    let coffeeContent1 = ``;
+    let coffeeContent2 = ``;
+    let coffeeContent3 = ``;
+
+    // Introduce the content into it's variable
+    selectedCoffeeArticles[0](coffeeArticle0 => {
+        coffeeContent1 = `
+        <h3>${coffeeArticle0.name}</h3>
+        <p>${coffeeArticle0.description}</p>
+        `
+    })
+
+    selectedCoffeeArticles[1](coffeeArticle1 => {
+        coffeeContent2 = `
+        <h3>${coffeeArticle1.name}</h3>
+        <p>${coffeeArticle1.description}</p>
+        `
+    })
+    
+    selectedCoffeeArticles[2](coffeeArticle2 => {
+        coffeeContent3 = `
+        <h3>${coffeeArticle2.name}</h3>
+        <p>${coffeeArticle2.description}</p>
+        `
+    })
+    
+    // Show on site
+    coffee_special1.innerHTML = coffeeContent1;
+    coffee_special2.innerHTML = coffeeContent2;
+    coffee_special3.innerHTML = coffeeContent3;
+
+}
+
 
 
 
@@ -69,28 +143,28 @@ function getCurrentSeason() {
     } 
 }
 
-// The value of the "currentseason" will determine which articles will be posted. 
+// The value of the "currentSeason" will determine which articles will be posted. 
 let currentSeason = getCurrentSeason();
 console.log(`The current season is ${currentSeason}.`);
 
 fetch('../json/articles_flowers.json')
     .then(response => {
         if(!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! - Flowers JSON - Status: ${response.status}`);
         }
         return response.json();
     })
-    .then(data => {
-        console.log(data);
+    .then(articles_flowers => {
+        console.log(articles_flowers);
 
-        let currentSeasonArticles = data.seasons.find(season => season.season === currentSeason);
+        let currentSeasonArticles = articles_flowers.seasons.find(season => season.season === currentSeason);
         console.log(currentSeasonArticles);
         
         // Variable that will contain the content to be posted.
-        let content = '';
+        let flowersContent = '';
 
         currentSeasonArticles.articles.forEach(article => {
-            content += `
+            flowersContent += `
             <h3>${article.title}</h3>
             <div>Url: <a>${article.url}</a></div>
             <div>Date of publishing: ${article.published_date}</div>
@@ -98,7 +172,7 @@ fetch('../json/articles_flowers.json')
             `
         })
 
-        seasonal_flowers_container.innerHTML = content;
+        seasonal_flowers_container.innerHTML = flowersContent;
     })
 
     .catch(error => {
