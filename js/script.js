@@ -17,8 +17,13 @@ fetch('../json/coffee_specials.json')
         coffeeSpecialSelector(coffee_specials);
 
         //Time interval to check and update articles every minute
+        let lastHour = new Date().getHours();
         setInterval(() => {
-            coffeeSpecialSelector(coffee_specials);
+            const currentHour = new Date().getHours();
+            if(currentHour !== lastHour) {
+                coffeeSpecialSelector(coffee_specials);
+                lastHour = currentHour;
+            }
         }, 60 * 1000); // Checks every minute if the hour changed.
     })
 
@@ -68,27 +73,97 @@ function coffeeSpecialSelector(coffee_specials) {
 --------------------------------------------------------- COFFEE ARTICLES END --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-
-
-
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
+fetch('../json/latest_books.json')
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! - Books JSON - Status: ${response.status}`);
+        }
+        return response.json();
+    })
 
+    .then(latest_books => {
+        console.log(latest_books);
+
+        booksMonthSelector(latest_books);
+
+        // Time interval of the check: everydayS
+        let pastMonth = new Date().getMonth();
+        setInterval(() => {
+            const currentMonth = new Date().getMonth();
+            if(currentMonth !== pastMonth) {
+                booksMonthSelector(latest_books);
+                pastMonth = currentMonth;
+            }
+        }, 24 * 60 * 60 * 1000); // Checks every day.
+
+    })
+
+    .catch(error => {
+        console.error('Error fetching or parsing JSON:', error);
+    })
+
+function booksMonthSelector(latest_books) {
+    const currentMonth = new Date().getMonth();
+
+    const currentMonthBook = latest_books[currentMonth];
+
+    currentMonthBook.forEach(thisMonthsBooks => {
+        booksContent += `
+        <h3>Title: ${thisMonthsBooks.title}</h3>
+        <div>Author: ${thisMonthsBooks.author}</div>
+        <div>Published: ${thisMonthsBooks.published}</div>
+        <p>Synopsis: ${thisMonthsBooks.synopsis}</p>
+        `
+    })
+    
+    latest_books_container.innerHTML = booksContent;
+
+}
 
 
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES END ---------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-
-
-
-
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- FLOWER ARTICLES CODE -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+fetch('../json/articles_flowers.json')
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! - Flowers JSON - Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(articles_flowers => {
+        console.log(articles_flowers);
+
+        let currentSeasonArticles = articles_flowers.seasons.find(season => season.season === currentSeason);
+        console.log(currentSeasonArticles);
+        
+        // Variable that will contain the content to be posted.
+        let flowersContent = '';
+
+        currentSeasonArticles.articles.forEach(article => {
+            flowersContent += `
+            <h3>${article.title}</h3>
+            <div>Url: <a>${article.url}</a></div>
+            <div>Date of publishing: ${article.published_date}</div>
+            <p>${article.summary}</p>
+            `
+        })
+
+        seasonal_flowers_container.innerHTML = flowersContent;
+    })
+
+    .catch(error => {
+        console.error('Error fetching or parsing JSON:', error);
+    })
 
 
 /* Determines which season it is. 
@@ -124,39 +199,6 @@ function getCurrentSeason() {
 // The value of the "currentSeason" will determine which articles will be posted. 
 let currentSeason = getCurrentSeason();
 console.log(`The current season is ${currentSeason}.`);
-
-fetch('../json/articles_flowers.json')
-    .then(response => {
-        if(!response.ok) {
-            throw new Error(`HTTP error! - Flowers JSON - Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(articles_flowers => {
-        console.log(articles_flowers);
-
-        let currentSeasonArticles = articles_flowers.seasons.find(season => season.season === currentSeason);
-        console.log(currentSeasonArticles);
-        
-        // Variable that will contain the content to be posted.
-        let flowersContent = '';
-
-        currentSeasonArticles.articles.forEach(article => {
-            flowersContent += `
-            <h3>${article.title}</h3>
-            <div>Url: <a>${article.url}</a></div>
-            <div>Date of publishing: ${article.published_date}</div>
-            <p>${article.summary}</p>
-            `
-        })
-
-        seasonal_flowers_container.innerHTML = flowersContent;
-    })
-
-    .catch(error => {
-        console.error('Error fetching or parsing JSON:', error);
-    })
-
 
 
 /* -----------------------------------------------------------------------------------------------------------------------------------------
