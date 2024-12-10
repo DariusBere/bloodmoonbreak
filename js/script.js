@@ -75,7 +75,7 @@ function coffeeSpecialSelector(coffee_specials) {
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 let jsonBooks;
-let flatJsonBooks;
+
 
 fetch('../json/latest_books.json')
     .then(response => {
@@ -88,7 +88,7 @@ fetch('../json/latest_books.json')
     .then(latest_books => {
         console.log(latest_books);
         jsonBooks = latest_books;
-        flatJsonBooks = latest_books;
+        
 
         // Selects the books of this month
         booksMonthSelector(jsonBooks);
@@ -218,4 +218,38 @@ console.log(`The current season is ${currentSeason}.`);
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
+// Flatten the books from all months into a single array.
+const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
+
+// Reference to the book list and total display
+const bookList = document.getElementById('book_list');
+const totalDisplay = document.querySelector('.total');
+
+// Generate checklist items dynamically
+books.forEach((book, index) => {
+    const bookItem = document.createElement('div');
+    bookItem.innerHTML = `
+        <label> 
+            <input type="checkbox" class="book-checkbox" data-price="${book.price}" />
+            ${book.title} - ${book.price.toFixed(2)} EUR
+        </label>
+    `;
+    bookList.appendChild(bookItem);
+})
+
+function updateTotal() {
+    const checkboxes = document.querySelectorAll('.book-checkbox');
+    let total = 0;
+
+    checkboxes.forEach(checkbox => {
+        if(checkbox.checked) {
+            total += parseFloat(checkbox.dataset.price);
+        }
+    });
+
+    totalDisplay.textContent = `Total: ${total.toFixed(2)} EUR`;
+}
+
+// Event listener to update when there is a change
+bookList.addEventListener('change', updateTotal);
 
