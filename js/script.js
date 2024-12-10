@@ -74,7 +74,7 @@ function coffeeSpecialSelector(coffee_specials) {
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
-let jsonBooks;
+let jsonBooks = '';
 
 
 fetch('../json/latest_books.json')
@@ -88,7 +88,7 @@ fetch('../json/latest_books.json')
     .then(latest_books => {
         console.log(latest_books);
         jsonBooks = latest_books;
-        
+        console.log(jsonBooks);
 
         // Selects the books of this month
         booksMonthSelector(jsonBooks);
