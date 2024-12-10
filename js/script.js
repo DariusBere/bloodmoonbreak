@@ -225,24 +225,26 @@ const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
 const bookList = document.getElementById('book_list');
 const totalDisplay = document.querySelector('.total');
 
+
 // Generate checklist items dynamically
-books.forEach((book, index) => {
+flatBooksJson.forEach((book, index) => {
     const bookItem = document.createElement('div');
     bookItem.innerHTML = `
         <label> 
-            <input type="checkbox" class="book-checkbox" data-price="${book.price}" />
-            ${book.title} - ${book.price.toFixed(2)} EUR
+            <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
+            ${book.title} - ${book.price ? book.price.toFixed(2) : '0.00'} EUR
         </label>
     `;
     bookList.appendChild(bookItem);
-})
+});
 
+// Function to update total
 function updateTotal() {
     const checkboxes = document.querySelectorAll('.book-checkbox');
     let total = 0;
 
     checkboxes.forEach(checkbox => {
-        if(checkbox.checked) {
+        if (checkbox.checked) {
             total += parseFloat(checkbox.dataset.price);
         }
     });
@@ -251,5 +253,7 @@ function updateTotal() {
 }
 
 // Event listener to update when there is a change
-bookList.addEventListener('change', updateTotal);
+if (bookList) {
+    bookList.addEventListener('change', updateTotal);
+}
 
