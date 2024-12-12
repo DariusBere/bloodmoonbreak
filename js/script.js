@@ -229,7 +229,7 @@ const totalDisplay = document.querySelector('.total');
 // Generate checklist items dynamically
 flatBooksJson.forEach((book, index) => {
     const bookItem = document.createElement('div');
-    bookItem.innerHTML = `
+    book_list.innerHTML = `
         <label> 
             <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
             ${book.title} - ${book.price ? book.price.toFixed(2) : '0.00'} EUR
