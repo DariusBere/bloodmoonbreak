@@ -222,23 +222,28 @@ console.log(`The current season is ${currentSeason}.`);
 const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
 
 // Reference to the book list and total display
-const bookList = document.getElementById('#book_list');
+const bookList = document.getElementById('book_list');
 const totalDisplay = document.querySelector('.total');
 
+// Ensure bookList and totalDisplay exist
+if (!bookList || !totalDisplay) {
+    console.error('Missing required DOM elements: #book_list or .total');
+    throw new Error('Cannot proceed without necessary DOM elements.');
+}
 
 // Generate checklist items dynamically
 flatBooksJson.forEach((book, index) => {
     const bookItem = document.createElement('div');
-    book_list.innerHTML = `
+    bookItem.innerHTML = `
         <label> 
             <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
             ${book.title} - ${book.price ? book.price.toFixed(2) : '0.00'} EUR
         </label>
     `;
-    bookList.appendChild(bookItem);
+    bookList.appendChild(bookItem); // Append the new item to the list
 });
 
-// Function to update total
+// Function to update the total
 function updateTotal() {
     const checkboxes = document.querySelectorAll('.book-checkbox');
     let total = 0;
@@ -253,7 +258,5 @@ function updateTotal() {
 }
 
 // Event listener to update when there is a change
-if (bookList) {
-    bookList.addEventListener('change', updateTotal);
-}
+bookList.addEventListener('change', updateTotal);
 
