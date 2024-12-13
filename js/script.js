@@ -74,7 +74,6 @@ function coffeeSpecialSelector(coffee_specials) {
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
-let jsonBooks = '';
 
 
 fetch('../json/latest_books.json')
@@ -87,7 +86,7 @@ fetch('../json/latest_books.json')
 
     .then(latest_books => {
         console.log(latest_books);
-        jsonBooks = latest_books;
+        const jsonBooks = latest_books;
         console.log(jsonBooks);
 
         // Selects the books of this month
@@ -217,6 +216,10 @@ console.log(`The current season is ${currentSeason}.`);
 
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
+
+console.log('Flattened books array:', flatBooksJson);
+console.log('Book list element:', bookList);
+console.log('Total display element:', totalDisplay);
 
 // Flatten the books from all months into a single array.
 const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
