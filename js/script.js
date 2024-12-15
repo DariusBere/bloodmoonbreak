@@ -217,10 +217,6 @@ console.log(`The current season is ${currentSeason}.`);
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
-console.log('Flattened books array:', flatBooksJson);
-console.log('Book list element:', bookList);
-console.log('Total display element:', totalDisplay);
-
 // Flatten the books from all months into a single array.
 const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
 
@@ -262,4 +258,8 @@ function updateTotal() {
 
 // Event listener to update when there is a change
 bookList.addEventListener('change', updateTotal);
+
+console.log('Flattened books array:', flatBooksJson);
+console.log('Book list element:', bookList);
+console.log('Total display element:', totalDisplay);
 
