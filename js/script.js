@@ -95,7 +95,7 @@ fetch('../json/latest_books.json')
 
         flattenBooksJson(latest_books);
 
-        generateChecklistItems();
+        generateChecklistItems(flatBooksJson);
 
         startListening();
     })
@@ -239,7 +239,7 @@ function flattenBooksJson(latest_books) {
 }
 
 // Generate checklist items dynamically
-function generateChecklistItems() {
+function generateChecklistItems(flatBooksJson) {
     flatBooksJson.forEach((book) => {
         const bookItem = document.createElement('div');
         bookItem.innerHTML = `
@@ -266,7 +266,7 @@ function updateTotal() {
     totalDisplay.textContent = `Total: ${total.toFixed(2)} EUR`;
 }
 
-function startListening() {
+function startListening(bookList, flatBooksJson, totalDisplay) {
     // Event listener to update when there is a change
     bookList.addEventListener('change', updateTotal);
 
