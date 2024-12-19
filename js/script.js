@@ -95,21 +95,11 @@ fetch('../json/latest_books.json')
         // Time interval of the check: everyday
         bookIntervalUpdate(jsonBooks);
 
-        // Flatten the books from all months into a single array.
-        const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
-        console.log('Flattened books array:', flatBooksJson);
-
-        // Reference to the book list and total display
-        const bookList = document.getElementById('book_list');
-        const totalDisplay = document.querySelector('.total');
-
-        // Ensure bookList and totalDisplay exist
-        if (!bookList || !totalDisplay) {
-            console.error('Missing required DOM elements: #book_list or .total');
-            throw new Error('Cannot proceed without necessary DOM elements.');
-        }
+        flattenBooksJson(jsonBooks);
 
         generateChecklistItems();
+
+        startListening();
     })
 
     .catch(error => {
@@ -233,6 +223,23 @@ console.log(`The current season is ${currentSeason}.`);
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
 
+function flattenBooksJson(jsonBooks) {
+    
+    // Flatten the books from all months into a single array.
+    const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
+    console.log('Flattened books array:', flatBooksJson);
+
+    // Reference to the book list and total display
+    const bookList = document.getElementById('book_list');
+    const totalDisplay = document.querySelector('.total');
+
+    // Ensure bookList and totalDisplay exist
+    if (!bookList || !totalDisplay) {
+        console.error('Missing required DOM elements: #book_list or .total');
+        throw new Error('Cannot proceed without necessary DOM elements.');
+    }
+}
+
 // Generate checklist items dynamically
 function generateChecklistItems() {
     flatBooksJson.forEach((book) => {
@@ -261,10 +268,12 @@ function updateTotal() {
     totalDisplay.textContent = `Total: ${total.toFixed(2)} EUR`;
 }
 
-// Event listener to update when there is a change
-bookList.addEventListener('change', updateTotal);
+function startListening() {
+    // Event listener to update when there is a change
+    bookList.addEventListener('change', updateTotal);
 
-console.log('Flattened books array:', flatBooksJson);
-console.log('Book list element:', bookList);
-console.log('Total display element:', totalDisplay);
+    console.log('Flattened books array:', flatBooksJson);
+    console.log('Book list element:', bookList);
+    console.log('Total display element:', totalDisplay);
 
+}
