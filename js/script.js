@@ -95,6 +95,11 @@ fetch('../json/latest_books.json')
         // Time interval of the check: everyday
         bookIntervalUpdate(jsonBooks);
 
+        // Flatten the books from all months into a single array.
+    const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
+    console.log('Flattened books array:', flatBooksJson);
+    generateChecklistItems();
+
     })
 
     .catch(error => {
@@ -217,8 +222,6 @@ console.log(`The current season is ${currentSeason}.`);
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
-// Flatten the books from all months into a single array.
-const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
 
 // Reference to the book list and total display
 const bookList = document.getElementById('book_list');
@@ -231,16 +234,18 @@ if (!bookList || !totalDisplay) {
 }
 
 // Generate checklist items dynamically
-flatBooksJson.forEach((book) => {
-    const bookItem = document.createElement('div');
-    bookItem.innerHTML = `
-        <label> 
-            <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
-            ${book.title} - ${book.price ? book.price.toFixed(2) : '0.00'} EUR
-        </label>
-    `;
-    bookList.appendChild(bookItem); // Append the new item to the list
-});
+function generateChecklistItems() {
+    flatBooksJson.forEach((book) => {
+        const bookItem = document.createElement('div');
+        bookItem.innerHTML = `
+            <label> 
+                <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
+                ${book.title} - ${book.price ? book.price.toFixed(2) : '0.00'} EUR
+            </label>
+        `;
+        bookList.appendChild(bookItem); // Append the new item to the list
+    });
+}
 
 // Function to update the total
 function updateTotal() {
