@@ -96,10 +96,20 @@ fetch('../json/latest_books.json')
         bookIntervalUpdate(jsonBooks);
 
         // Flatten the books from all months into a single array.
-    const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
-    console.log('Flattened books array:', flatBooksJson);
-    generateChecklistItems();
+        const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
+        console.log('Flattened books array:', flatBooksJson);
 
+        // Reference to the book list and total display
+        const bookList = document.getElementById('book_list');
+        const totalDisplay = document.querySelector('.total');
+
+        // Ensure bookList and totalDisplay exist
+        if (!bookList || !totalDisplay) {
+            console.error('Missing required DOM elements: #book_list or .total');
+            throw new Error('Cannot proceed without necessary DOM elements.');
+        }
+
+        generateChecklistItems();
     })
 
     .catch(error => {
@@ -222,16 +232,6 @@ console.log(`The current season is ${currentSeason}.`);
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
-
-// Reference to the book list and total display
-const bookList = document.getElementById('book_list');
-const totalDisplay = document.querySelector('.total');
-
-// Ensure bookList and totalDisplay exist
-if (!bookList || !totalDisplay) {
-    console.error('Missing required DOM elements: #book_list or .total');
-    throw new Error('Cannot proceed without necessary DOM elements.');
-}
 
 // Generate checklist items dynamically
 function generateChecklistItems() {
