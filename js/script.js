@@ -86,16 +86,14 @@ fetch('../json/latest_books.json')
 
     .then(latest_books => {
         console.log(latest_books);
-        jsonBooks = latest_books;
-        console.log(jsonBooks);
 
         // Selects the books of this month
-        booksMonthSelector(jsonBooks);
+        booksMonthSelector(latest_books);
 
         // Time interval of the check: everyday
-        bookIntervalUpdate(jsonBooks);
+        bookIntervalUpdate(latest_books);
 
-        flattenBooksJson(jsonBooks);
+        flattenBooksJson(latest_books);
 
         generateChecklistItems();
 
@@ -106,7 +104,7 @@ fetch('../json/latest_books.json')
         console.error('Error fetching or parsing JSON:', error);
     })
 
-function booksMonthSelector(jsonBooks) {
+function booksMonthSelector(latest_books) {
     const months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -114,7 +112,7 @@ function booksMonthSelector(jsonBooks) {
 
     const currentMonth = new Date().getMonth();
     const currentMonthName = months[currentMonth];
-    const currentMonthBooks = jsonBooks.booksOfTheMonth[currentMonthName];
+    const currentMonthBooks = latest_books.booksOfTheMonth[currentMonthName];
 
     let booksContent = '';
     currentMonthBooks.forEach(book => {
@@ -130,13 +128,13 @@ function booksMonthSelector(jsonBooks) {
 
 }
 
-function bookIntervalUpdate(jsonBooks){
+function bookIntervalUpdate(latest_books){
 
     let pastMonth = new Date().getMonth();
     setInterval(() => {
         const currentMonth = new Date().getMonth();
         if(currentMonth !== pastMonth) {
-            booksMonthSelector(jsonBooks);
+            booksMonthSelector(latest_books);
             pastMonth = currentMonth;
         }
     }, 24 * 60 * 60 * 1000); // Checks every day.
@@ -223,10 +221,10 @@ console.log(`The current season is ${currentSeason}.`);
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
 
-function flattenBooksJson(jsonBooks) {
+function flattenBooksJson(latest_books) {
     
     // Flatten the books from all months into a single array.
-    const flatBooksJson = Object.values(jsonBooks.booksOfTheMonth).flat();
+    const flatBooksJson = Object.values(latest_books.booksOfTheMonth).flat();
     console.log('Flattened books array:', flatBooksJson);
 
     // Reference to the book list and total display
