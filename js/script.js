@@ -231,7 +231,7 @@ if (!bookList || !totalDisplay) {
 }
 
 // Generate checklist items dynamically
-flatBooksJson.forEach((book, index) => {
+flatBooksJson.forEach((book) => {
     const bookItem = document.createElement('div');
     bookItem.innerHTML = `
         <label> 
