@@ -232,13 +232,13 @@ fetch('../json/book_list.json')
     })
 
 // Reference to the book list and total display
-const bookList = document.getElementById('book_list');
+const bookList = document.getElementById("book-list");  
 const totalDisplay = document.querySelector('.total');
 
 // Generate checklist items dynamically
-function generateChecklistItems(book_list_json) {
+function generateChecklistItems(book_list_json, bookList) {
     book_list_json.forEach((book) => {
-        var bookItem = document.createElement('div');
+        const bookItem = document.createElement('div');
         bookItem.innerHTML = `
             <label> 
                 <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
