@@ -214,7 +214,7 @@ console.log(`The current season is ${currentSeason}.`);
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
 
 // Reference to the book list and total display
-const bookList = document.getElementById("book-list");
+const bookList = document.getElementById("book_list");
 const totalDisplay = document.querySelector('.total');
 
 
