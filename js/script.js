@@ -74,8 +74,6 @@ function coffeeSpecialSelector(coffee_specials) {
 /* -----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------- BOOKS ARTICLES CODE --------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------- */
-let jsonBooks = [];
-
 fetch('../json/latest_books.json')
     .then(response => {
         if(!response.ok) {
@@ -93,11 +91,6 @@ fetch('../json/latest_books.json')
         // Time interval of the check: everyday
         bookIntervalUpdate(latest_books);
 
-        flattenBooksJson(latest_books);
-
-        generateChecklistItems(flatBooksJson);
-
-        startListening();
     })
 
     .catch(error => {
@@ -219,28 +212,32 @@ console.log(`The current season is ${currentSeason}.`);
 
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
+fetch('../json/book_list.json')
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! - Flowers JSON - Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(book_list_json => {
+        console.log(book_list_json);
 
+        generateChecklistItems(book_list_json);
 
-function flattenBooksJson(latest_books) {
-    
-    // Flatten the books from all months into a single array.
-    const flatBooksJson = Object.values(latest_books.booksOfTheMonth).flat();
-    console.log('Flattened books array:', flatBooksJson);
+        startListening(bookList, totalDisplay);
+    })
 
-    // Reference to the book list and total display
-    const bookList = document.getElementById('book_list');
-    const totalDisplay = document.querySelector('.total');
+    .catch(error => {
+        console.error('Error fetching or parsing JSON:', error);
+    })
 
-    // Ensure bookList and totalDisplay exist
-    if (!bookList || !totalDisplay) {
-        console.error('Missing required DOM elements: #book_list or .total');
-        throw new Error('Cannot proceed without necessary DOM elements.');
-    }
-}
+// Reference to the book list and total display
+const bookList = document.getElementById('book_list');
+const totalDisplay = document.querySelector('.total');
 
 // Generate checklist items dynamically
-function generateChecklistItems(flatBooksJson) {
-    flatBooksJson.forEach((book) => {
+function generateChecklistItems(book_list_json) {
+    book_list_json.forEach((book) => {
         const bookItem = document.createElement('div');
         bookItem.innerHTML = `
             <label> 
@@ -266,11 +263,10 @@ function updateTotal() {
     totalDisplay.textContent = `Total: ${total.toFixed(2)} EUR`;
 }
 
-function startListening(bookList, flatBooksJson, totalDisplay) {
+function startListening(bookList, totalDisplay) {
     // Event listener to update when there is a change
     bookList.addEventListener('change', updateTotal);
 
-    console.log('Flattened books array:', flatBooksJson);
     console.log('Book list element:', bookList);
     console.log('Total display element:', totalDisplay);
 
