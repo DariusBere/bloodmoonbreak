@@ -212,6 +212,12 @@ console.log(`The current season is ${currentSeason}.`);
 
 
 // ------------------ PRESUPUESTO BOOKS CODE ------------------ \\
+
+// Reference to the book list and total display
+const bookList = document.getElementById("book-list");
+const totalDisplay = document.querySelector('.total');
+
+
 fetch('../json/book_list.json')
     .then(response => {
         if(!response.ok) {
@@ -230,10 +236,6 @@ fetch('../json/book_list.json')
     .catch(error => {
         console.error('Error fetching or parsing JSON:', error);
     })
-
-// Reference to the book list and total display
-const bookList = document.getElementById("book-list");
-const totalDisplay = document.querySelector('.total');
 
 // Generate checklist items dynamically
 function generateChecklistItems(book_list_json, bookList) {
