@@ -238,7 +238,7 @@ const totalDisplay = document.querySelector('.total');
 // Generate checklist items dynamically
 function generateChecklistItems(book_list_json) {
     book_list_json.forEach((book) => {
-        const bookItem = document.createElement('div');
+        var bookItem = document.createElement('div');
         bookItem.innerHTML = `
             <label> 
                 <input type="checkbox" class="book-checkbox" data-price="${book.price || 0}" />
