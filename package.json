@@ -2,7 +2,7 @@
   "name": "bloodmoonbreak",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://bloodmoonbreak.com/",
+  "homepage": "https://dariusbere.github.io/bloodmoonbreak/",
   "type": "module",
   "scripts": {
     "dev": "vite",
