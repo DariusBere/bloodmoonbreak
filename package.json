@@ -2,7 +2,7 @@
   "name": "bloodmoonbreak",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://bloodmoonbreak.com/"
+  "homepage": "https://bloodmoonbreak.com/",
   "type": "module",
   "scripts": {
     "dev": "vite",
